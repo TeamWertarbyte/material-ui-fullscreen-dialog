@@ -95,16 +95,14 @@ export default class FullscreenDialog extends Component {
 
 FullscreenDialog.propTypes = {
   actionButton: PropTypes.node,
+  appBarStyle: PropTypes.object,
   children: PropTypes.node,
   closeIcon: PropTypes.node,
+  containerStyle: PropTypes.object,
   onRequestClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   style: PropTypes.object,
   title: PropTypes.string
-}
-
-FullscreenDialog.defaultProps = {
-  actions: []
 }
 
 FullscreenDialog.contextTypes = {
