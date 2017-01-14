@@ -33,7 +33,7 @@ import FullscreenDialog from 'material-ui-fullscreen-dialog'
 | Name | Type | Default | Description |
 | --- | --- | --- | --- |
 | actionButton | `node` | | A `FlatButton` or `IconButton` that is used as affirmative action button. |
-| appBarStyle | `object` | | 
+| appBarStyle | `object` | | Overrides the inline-styles of the app bar. | 
 | children | `node` | | Children elements. |
 | closeIcon | `node` | Close icon | Icon element used for the dismissive action. |
 | containerStyle | `object` | | Overrides the inline-styles of the dialog's children container. |
@@ -41,6 +41,7 @@ import FullscreenDialog from 'material-ui-fullscreen-dialog'
 | open * | `bool` | | Controls whether the dialog is opened or not. |
 | style | `object` | | Overrides the inline-styles of the dialog's root element. |
 | title | `string` | | The title of the dialog. |
+| titleStyle | `object` | | Overrides the inline-styles of the app bar's title element. |
 
 \* required property
 
