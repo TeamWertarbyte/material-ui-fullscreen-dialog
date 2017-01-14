@@ -11,10 +11,6 @@ const getStyles = (props, theme) => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  title: {
-    fontSize: 20,
-    fontWeight: 500
-  },
   appBar: {
     height: (props.appBarStyle ? props.appBarStyle.height : null) || theme.appBar.height
   },
@@ -48,7 +44,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
     >
       <AppBar
         title={title}
-        titleStyle={{ ...styles.title, ...titleStyle }}
+        titleStyle={titleStyle}
         style={{ ...styles.appBar, ...appBarStyle }}
         iconElementLeft={(
           <IconButton onTouchTap={onRequestClose}>
