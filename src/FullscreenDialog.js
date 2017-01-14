@@ -1,5 +1,4 @@
-import React, { PropTypes, Component } from 'react'
-import ReactTransitionGroup from 'react-addons-transition-group'
+import React, { PropTypes } from 'react'
 
 import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
@@ -26,71 +25,43 @@ const getStyles = (props, theme) => ({
   }
 })
 
-export default class FullscreenDialog extends Component {
-  componentDidMount () {
-    this.id = `popup-${Date.now()}`
-    if (this.props.open) {
-      history.replaceState(this.id, 'popup')
-      history.pushState(this.id, 'popup')
-    }
-    window.addEventListener('popstate', this.onPopState)
-  }
+export function FullscreenDialog (props, { muiTheme }) {
+  const styles = getStyles(props, muiTheme)
 
-  componentWillUnmount () {
-    window.removeEventListener('popstate', this.onPopState)
-  }
+  const {
+    actionButton,
+    appBarStyle,
+    children,
+    closeIcon,
+    containerStyle,
+    onRequestClose,
+    open,
+    style,
+    title,
+    titleStyle
+  } = props
 
-  onPopState = ({ state }) => {
-    history.pushState(this.id, 'popup')   
-    if (state === this.id && this.props.onRequestClose) {
-      this.props.onRequestClose()
-    }
-  }
-
-  componentWillReceiveProps ({ open }) {
-    if (open && !this.props.open) {
-      history.replaceState(this.id, 'popup')
-      history.pushState(this.id, 'popup')
-    }
-  }
-
-  render () {
-    const styles = getStyles(this.props, this.context.muiTheme)
-
-    const {
-      actionButton,
-      appBarStyle,
-      children,
-      closeIcon,
-      containerStyle,
-      open,
-      style,
-      title,
-      titleStyle,
-    } = this.props
-
-    return (
-      <FullscreenDialogFrame
-        open={open}
-        style={{ ...style, ...styles.root }}
-      >
-        <AppBar
-          title={title}
-          titleStyle={{ ...styles.title, ...titleStyle }}
-          style={{ ...styles.appBar, ...appBarStyle }}
-          iconElementLeft={(
-            <IconButton onTouchTap={() => this.props.onRequestClose()}>
-                {closeIcon || <NavigationCloseIcon />}
-            </IconButton>
-          )}
-          iconElementRight={actionButton}
-        />
-        <div style={{ ...styles.container, ...containerStyle }}>
-          {this.props.children}
-        </div>
-      </FullscreenDialogFrame>
-    )
-  }
+  return (
+    <FullscreenDialogFrame
+      open={open}
+      style={{ ...style, ...styles.root }}
+    >
+      <AppBar
+        title={title}
+        titleStyle={{ ...styles.title, ...titleStyle }}
+        style={{ ...styles.appBar, ...appBarStyle }}
+        iconElementLeft={(
+          <IconButton onTouchTap={onRequestClose}>
+              {closeIcon || <NavigationCloseIcon />}
+          </IconButton>
+        )}
+        iconElementRight={actionButton}
+      />
+      <div style={{ ...styles.container, ...containerStyle }}>
+        {children}
+      </div>
+    </FullscreenDialogFrame>
+  )
 }
 
 FullscreenDialog.propTypes = {
@@ -102,7 +73,8 @@ FullscreenDialog.propTypes = {
   onRequestClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   style: PropTypes.object,
-  title: PropTypes.string
+  title: PropTypes.string,
+  titleStyle: PropTypes.object
 }
 
 FullscreenDialog.contextTypes = {
