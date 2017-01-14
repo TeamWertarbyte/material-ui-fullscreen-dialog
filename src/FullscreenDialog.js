@@ -16,8 +16,7 @@ const getStyles = (props, theme) => ({
   },
   container: {
     flex: 1,
-    overflow: 'auto',
-    padding: 16
+    overflow: 'auto'
   }
 })
 
