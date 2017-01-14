@@ -1,4 +1,5 @@
 import React from 'react'
+import { action } from '@kadira/storybook'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
@@ -18,7 +19,10 @@ export default class extends React.Component {
       <div>
         <FullscreenDialog
           open={this.state.open}
-          onRequestClose={() => this.setState({ open: false })}
+          onRequestClose={(...args) => {
+            action('onRequestClose')(...args)
+            this.setState({ open: false })
+          }}
           title='Some demo dialog'
           actionButton={<FlatButton
             label='Done'

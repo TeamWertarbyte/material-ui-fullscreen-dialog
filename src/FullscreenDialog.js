@@ -25,7 +25,7 @@ const getStyles = (props, theme) => ({
   }
 })
 
-export function FullscreenDialog (props, { muiTheme }) {
+export default function FullscreenDialog (props, { muiTheme }) {
   const styles = getStyles(props, muiTheme)
 
   const {
@@ -52,7 +52,7 @@ export function FullscreenDialog (props, { muiTheme }) {
         style={{ ...styles.appBar, ...appBarStyle }}
         iconElementLeft={(
           <IconButton onTouchTap={onRequestClose}>
-              {closeIcon || <NavigationCloseIcon />}
+            {closeIcon || <NavigationCloseIcon />}
           </IconButton>
         )}
         iconElementRight={actionButton}

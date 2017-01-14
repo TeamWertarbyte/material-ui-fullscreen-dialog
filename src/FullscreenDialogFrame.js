@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import ReactTransitionGroup from 'react-addons-transition-group'
 
-const getStyles = (props) => ({
+const styles = {
   root: {
     width: '100vw',
     height: '100vh',
@@ -11,106 +11,98 @@ const getStyles = (props) => ({
     zIndex: 1500,
     background: '#fafafa'
   }
-})
+}
 
 class TransitionItem extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-    style: PropTypes.object,
-  };
-
-  state = {
-    style: {
-      opacity: 0,
-      transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
-      transform: 'translate(0, 56px)'
-    },
-  };
-
-  componentWillUnmount() {
-    clearTimeout(this.enterTimeout);
-    clearTimeout(this.leaveTimeout);
+  constructor (props) {
+    super(props)
+    this.state = {
+      style: {
+        opacity: 0,
+        transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
+        transform: 'translate(0, 56px)'
+      }
+    }
   }
 
-  componentWillEnter(callback) {
-    this.componentWillAppear(callback);
+  componentWillUnmount () {
+    clearTimeout(this.enterTimeout)
+    clearTimeout(this.leaveTimeout)
   }
 
-  componentWillAppear(callback) {
+  componentWillEnter (callback) {
+    this.componentWillAppear(callback)
+  }
+
+  componentWillAppear (callback) {
     this.enterTimeout = setTimeout(() => {
       this.setState({
         style: {
           opacity: 1,
           transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
-          transform: 'translate(0, 0px)',
+          transform: 'translate(0, 0px)'
         }
       })
-      this.enterTimeout = setTimeout(callback, 225); // matches transition duration
+      this.enterTimeout = setTimeout(callback, 225) // matches transition duration
     })
   }
 
-  componentWillLeave(callback) {
+  componentWillLeave (callback) {
     this.setState({
       style: {
         opacity: 0,
         transition: 'all 195ms cubic-bezier(0.4, 0.0, 1, 1)',
         transform: 'translate(0, 56px)'
-      },
-    });
+      }
+    })
 
-    this.leaveTimeout = setTimeout(callback, 195); // matches transition duration
+    this.leaveTimeout = setTimeout(callback, 195) // matches transition duration
   }
 
-  render() {
+  render () {
     const {
       style,
       children,
       ...other
-    } = this.props;
+    } = this.props
 
     return (
       <div {...other} style={{ ...style, ...this.state.style }}>
         {children}
       </div>
-    );
-  }
-}
-
-export default class FullscreenDialogFrame extends Component {
-  render () {
-    const styles = getStyles(this.props)
-
-    const {
-      children,
-      style,
-      title,
-      titleStyle,
-    } = this.props
-
-    return (
-      <ReactTransitionGroup
-        component='div'
-        transitionAppear={true}
-        transitionAppearTimeout={225}
-        transitionEnter={true}
-        transitionEnterTimeout={225}
-      >
-        {this.props.open && (
-          <TransitionItem style={{
-              ...styles.root,
-              ...style
-            }}
-          >
-            {this.props.children}
-          </TransitionItem>
-        )}
-      </ReactTransitionGroup>
     )
   }
 }
 
+TransitionItem.propTypes = {
+  children: PropTypes.node,
+  style: PropTypes.object
+}
+
+export default function FullscreenDialogFrame ({ children, open, style }) {
+  return (
+    <ReactTransitionGroup
+      component='div'
+      transitionAppear
+      transitionAppearTimeout={225}
+      transitionEnter
+      transitionEnterTimeout={225}
+    >
+      {open && (
+        <TransitionItem style={{
+          ...styles.root,
+          ...style
+        }}
+        >
+          {children}
+        </TransitionItem>
+      )}
+    </ReactTransitionGroup>
+  )
+}
+
 FullscreenDialogFrame.propTypes = {
-  children: PropTypes.node,  
+  children: PropTypes.node,
   open: PropTypes.bool.isRequired,
   style: PropTypes.object
 }
