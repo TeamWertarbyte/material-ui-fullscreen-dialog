@@ -1,9 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
+import { storiesOf, action } from '@kadira/storybook'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import FlatButton from 'material-ui/FlatButton'
 import FullscreenDialogDemo from './FullscreenDialogDemo'
+import FullscreenDialog from '../src/FullscreenDialog'
 
 function themed (children) {
   return (
@@ -16,6 +18,30 @@ function themed (children) {
 }
 
 storiesOf('FullscreenDialog', module)
-  .add('with some chips', () => themed(
+  .add('interactive demo', () => themed(
     <FullscreenDialogDemo />
+  ))
+  .add('opened', () => themed(
+    <FullscreenDialog
+      open
+      title='Demo dialog'
+      onRequestClose={action('onRequestClose')}
+      actionButton={<FlatButton
+        label='Done'
+      />}
+    >
+      Hello world.
+    </FullscreenDialog>
+  ))
+  .add('without close button', () => themed(
+    <FullscreenDialog
+      open
+      title='No close button'
+      actionButton={<FlatButton
+        label='Done'
+      />}
+    >
+      This popup's <code>onRequestClose</code> prop is not specified,
+      so no close/back icon is displayed.
+    </FullscreenDialog>
   ))

@@ -51,6 +51,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
           </IconButton>
         )}
         iconElementRight={actionButton}
+        showMenuIconButton={onRequestClose != null}
       />
       <div style={{ ...styles.container, ...containerStyle }}>
         {children}
