@@ -1,4 +1,6 @@
 # material-ui-fullscreen-dialog
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/TeamWertarbyte/material-ui-fullscreen-dialog.svg)](https://greenkeeper.io/)
 This project provides a [fullscreen dialog][dialogspec] for [Material-UI][mui].
 
 ![Demo](demo.gif)
