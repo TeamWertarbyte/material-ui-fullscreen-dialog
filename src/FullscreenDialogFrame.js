@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import ReactTransitionGroup from 'react-addons-transition-group'
+import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling'
 
 const styles = {
   root: {
@@ -97,6 +98,7 @@ export default function FullscreenDialogFrame ({ children, open, style }) {
           {children}
         </TransitionItem>
       )}
+      <AutoLockScrolling lock={open} />
     </ReactTransitionGroup>
   )
 }
