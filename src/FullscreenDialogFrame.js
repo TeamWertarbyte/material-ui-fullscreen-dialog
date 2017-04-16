@@ -1,5 +1,6 @@
-import React, { PropTypes, Component } from 'react'
-import ReactTransitionGroup from 'react-addons-transition-group'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import TransitionGroup from 'react-transition-group/TransitionGroup'
 import AutoLockScrolling from 'material-ui/internal/AutoLockScrolling'
 
 const styles = {
@@ -82,7 +83,7 @@ TransitionItem.propTypes = {
 
 export default function FullscreenDialogFrame ({ children, open, style }) {
   return (
-    <ReactTransitionGroup
+    <TransitionGroup
       component='div'
       transitionAppear
       transitionAppearTimeout={225}
@@ -99,7 +100,7 @@ export default function FullscreenDialogFrame ({ children, open, style }) {
         </TransitionItem>
       )}
       <AutoLockScrolling lock={open} />
-    </ReactTransitionGroup>
+    </TransitionGroup>
   )
 }
 
