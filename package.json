@@ -5,6 +5,8 @@
   "main": "lib/FullscreenDialog.js",
   "scripts": {
     "build": "babel src -d lib",
+    "test": "standard",
+    "lint": "standard",
     "prepublish": "babel src -d lib",
     "storybook": "start-storybook -p 6006",
     "deploy-storybook": "storybook-to-ghpages"
@@ -38,7 +40,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-tap-event-plugin": "^2.0.1",
-    "react-transition-group": "^1.1.1"
+    "react-transition-group": "^1.1.1",
+    "standard": "^10.0.2"
   },
   "peerDependencies": {
     "material-ui": ">=0.17.0 <1.0.0",
