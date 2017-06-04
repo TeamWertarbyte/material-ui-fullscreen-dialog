@@ -6,19 +6,28 @@ import NavigationCloseIcon from 'material-ui/svg-icons/navigation/close'
 
 import FullscreenDialogFrame from './FullscreenDialogFrame'
 
-const getStyles = (props, theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  appBar: {
-    height: (props.appBarStyle ? props.appBarStyle.height : null) || theme.appBar.height
-  },
-  container: {
-    flex: 1,
-    overflow: 'auto'
+const getStyles = (props, theme) => {
+  const styles = {
+    root: {
+      display: 'flex',
+      flexDirection: 'column'
+    },
+    appBar: {
+      height: (props.appBarStyle ? props.appBarStyle.height : null) || theme.appBar.height
+    },
+    container: {
+      flex: 1,
+      overflow: 'auto'
+    }
   }
-})
+
+  if (props.immersive) {
+    styles.appBar.background = 'linear-gradient(0deg, rgba(0,0,0,0), rgba(0,0,0,0.4)'
+    styles.appBar.position = 'absolute'
+  }
+
+  return styles
+}
 
 export default function FullscreenDialog (props, { muiTheme }) {
   const styles = getStyles(props, muiTheme)
@@ -29,6 +38,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
     children,
     closeIcon,
     containerStyle,
+    immersive,
     onRequestClose,
     open,
     style,
@@ -52,6 +62,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
         )}
         iconElementRight={actionButton}
         showMenuIconButton={onRequestClose != null}
+        zDepth={immersive ? 0 : undefined}
       />
       <div style={{ ...styles.container, ...containerStyle }}>
         {children}
@@ -66,11 +77,16 @@ FullscreenDialog.propTypes = {
   children: PropTypes.node,
   closeIcon: PropTypes.node,
   containerStyle: PropTypes.object,
+  immersive: PropTypes.bool,
   onRequestClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
   style: PropTypes.object,
   title: PropTypes.string,
   titleStyle: PropTypes.object
+}
+
+FullscreenDialog.defaultProps = {
+  immersive: false
 }
 
 FullscreenDialog.contextTypes = {

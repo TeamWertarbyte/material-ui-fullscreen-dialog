@@ -45,3 +45,13 @@ storiesOf('FullscreenDialog', module)
       so no close/back icon is displayed.
     </FullscreenDialog>
   ))
+  .add('immersive mode', () => themed(
+    <FullscreenDialog
+      open
+      immersive
+      title='Im-meow-sive mode'
+      onRequestClose={action('onRequestClose')}
+    >
+      <img src='https://lorempixel.com/1920/1080/cats/' style={{ width: '100%' }} />
+    </FullscreenDialog>
+  ))
