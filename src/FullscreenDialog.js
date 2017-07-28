@@ -35,6 +35,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
   const {
     actionButton,
     appBarStyle,
+    appBarZDepth,
     children,
     closeIcon,
     containerStyle,
@@ -62,7 +63,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
         )}
         iconElementRight={actionButton}
         showMenuIconButton={onRequestClose != null}
-        zDepth={immersive ? 0 : undefined}
+        zDepth={immersive ? 0 : appBarZDepth}
       />
       <div style={{ ...styles.container, ...containerStyle }}>
         {children}
@@ -74,6 +75,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
 FullscreenDialog.propTypes = {
   actionButton: PropTypes.node,
   appBarStyle: PropTypes.object,
+  appBarZDepth: PropTypes.oneOf([1, 2, 3, 4, 5]),
   children: PropTypes.node,
   closeIcon: PropTypes.node,
   containerStyle: PropTypes.object,
@@ -86,7 +88,8 @@ FullscreenDialog.propTypes = {
 }
 
 FullscreenDialog.defaultProps = {
-  immersive: false
+  immersive: false,
+  appBarZDepth: 1
 }
 
 FullscreenDialog.contextTypes = {

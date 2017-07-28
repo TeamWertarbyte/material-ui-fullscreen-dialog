@@ -55,3 +55,13 @@ storiesOf('FullscreenDialog', module)
       <img src='https://lorempixel.com/1920/1080/cats/' style={{ width: '100%' }} />
     </FullscreenDialog>
   ))
+  .add('with custom z-depth', () => themed(
+    <FullscreenDialog
+      open
+      title='Demo dialog'
+      onRequestClose={action('onRequestClose')}
+      appBarZDepth={2}
+    >
+      More shadow.
+    </FullscreenDialog>
+  ))
