@@ -48,7 +48,7 @@ import FullscreenDialog from 'material-ui-fullscreen-dialog'
 \* required property
 
 ## Credits
-The code for the animation was adapted from Material UI's [Dialog][mui-auto-complete], although the animation itself is different.
+The code for the animation was adapted from Material UI's [Dialog][mui-dialog], although the animation itself is different.
 
 ## License
 The files included in this repository are licensed under the MIT license.
@@ -56,4 +56,4 @@ The files included in this repository are licensed under the MIT license.
 [dialogspec]: https://material.io/guidelines/components/dialogs.html#dialogs-specs
 [mui]: http://www.material-ui.com/#/
 [gh-pages]: https://teamwertarbyte.github.io/material-ui-fullscreen-dialog/
-[Dialog]: https://github.com/callemall/material-ui/blob/master/src/Dialog/Dialog.js
+[mui-dialog]: https://github.com/callemall/material-ui/blob/master/src/Dialog/Dialog.js
