@@ -26,7 +26,7 @@ export default class extends React.Component {
           title='Some demo dialog'
           actionButton={<FlatButton
             label='Done'
-            onTouchTap={() => this.setState({ open: false })}
+            onClick={() => this.setState({ open: false })}
           />}
         >
           <TextField
@@ -38,7 +38,7 @@ export default class extends React.Component {
         </FullscreenDialog>
 
         <RaisedButton
-          onTouchTap={() => this.setState({ open: true })}
+          onClick={() => this.setState({ open: true })}
           label='Open dialog'
         />
       </div>

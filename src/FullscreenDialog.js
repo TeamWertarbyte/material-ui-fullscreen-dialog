@@ -57,7 +57,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
         titleStyle={titleStyle}
         style={{ ...styles.appBar, ...appBarStyle }}
         iconElementLeft={(
-          <IconButton onTouchTap={onRequestClose}>
+          <IconButton onClick={onRequestClose}>
             {closeIcon || <NavigationCloseIcon />}
           </IconButton>
         )}

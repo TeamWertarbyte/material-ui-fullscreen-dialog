@@ -22,7 +22,7 @@ import FullscreenDialog from 'material-ui-fullscreen-dialog'
   title={'Demo dialog'}
   actionButton={<FlatButton
     label='Done'
-    onTouchTap={() => this.setState({ open: false })}
+    onClick={() => this.setState({ open: false })}
   />}
 >
   // dialog content here
