@@ -75,7 +75,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
 FullscreenDialog.propTypes = {
   actionButton: PropTypes.node,
   appBarStyle: PropTypes.object,
-  appBarZDepth: PropTypes.oneOf([1, 2, 3, 4, 5]),
+  appBarZDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
   children: PropTypes.node,
   closeIcon: PropTypes.node,
   containerStyle: PropTypes.object,
