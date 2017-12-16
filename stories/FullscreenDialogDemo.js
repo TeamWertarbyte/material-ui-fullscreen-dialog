@@ -1,5 +1,5 @@
 import React from 'react'
-import { action } from '@kadira/storybook'
+import { action } from '@storybook/addon-actions'
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
