@@ -58,7 +58,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
         style={{ ...styles.appBar, ...appBarStyle }}
         iconElementLeft={(
           <IconButton onClick={onRequestClose}>
-            {closeIcon || <NavigationCloseIcon />}
+            {closeIcon}
           </IconButton>
         )}
         iconElementRight={actionButton}
@@ -73,23 +73,60 @@ export default function FullscreenDialog (props, { muiTheme }) {
 }
 
 FullscreenDialog.propTypes = {
+  /**
+   * A `FlatButton` or `IconButton` that is used as affirmative action button.
+   */
   actionButton: PropTypes.node,
+  /**
+   * Overrides the inline-styles of the app bar.
+   */
   appBarStyle: PropTypes.object,
+  /**
+   * Overrides the z-depth of the app bar, will affect its shadow. This is ignored if immersive is set to `true`.
+   */
   appBarZDepth: PropTypes.oneOf([0, 1, 2, 3, 4, 5]),
+  /**
+   * Children elements.
+   */
   children: PropTypes.node,
+  /**
+   * Icon element used for the dismissive action. This is hidden if `onRequestClose` is not set.
+   */
   closeIcon: PropTypes.node,
+  /**
+   * Overrides the inline-styles of the dialog's children container.
+   */
   containerStyle: PropTypes.object,
+  /**
+   *  Toggles the immersive mode. If set to `true`, the app bar has a semi-transparent gradient and overlays the content.
+   */
   immersive: PropTypes.bool,
+  /**
+   * Callback that is invoked when the dismissive action button is touched.
+   */
   onRequestClose: PropTypes.func,
+  /**
+   * Controls whether the dialog is opened or not.
+   */
   open: PropTypes.bool.isRequired,
+  /**
+   * Overrides the inline-styles of the dialog's root element.
+   */
   style: PropTypes.object,
+  /**
+   * The title of the dialog.
+   */
   title: PropTypes.string,
+  /**
+   * Overrides the inline-styles of the app bar's title element.
+   */
   titleStyle: PropTypes.object
 }
 
 FullscreenDialog.defaultProps = {
-  immersive: false,
-  appBarZDepth: 1
+  appBarZDepth: 1,
+  closeIcon: <NavigationCloseIcon />,
+  immersive: false
 }
 
 FullscreenDialog.contextTypes = {
