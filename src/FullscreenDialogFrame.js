@@ -31,6 +31,7 @@ const styles = {
     },
     exited: {
       opacity: 0,
+      display: 'none',
       transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
       transform: 'translate(0, 56px)'
     }
@@ -48,9 +49,9 @@ export default function FullscreenDialogFrame ({ children, open, style }) {
     >
       {(state) => (
         <div style={{
+          ...style,
           ...styles.root,
-          ...styles.transition[state],
-          ...style
+          ...styles.transition[state]
         }}>
           {children}
           <AutoLockScrolling lock={open} />
