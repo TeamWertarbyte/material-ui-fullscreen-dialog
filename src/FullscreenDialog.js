@@ -34,10 +34,12 @@ export default function FullscreenDialog (props, { muiTheme }) {
 
   const {
     actionButton,
+    appBarClassName,
     appBarStyle,
     appBarZDepth,
     children,
     closeIcon,
+    containerClassName,
     containerStyle,
     immersive,
     onRequestClose,
@@ -53,6 +55,7 @@ export default function FullscreenDialog (props, { muiTheme }) {
       style={{ ...style, ...styles.root }}
     >
       <AppBar
+        className={appBarClassName}
         title={title}
         titleStyle={titleStyle}
         style={{ ...styles.appBar, ...appBarStyle }}
@@ -65,7 +68,10 @@ export default function FullscreenDialog (props, { muiTheme }) {
         showMenuIconButton={onRequestClose != null}
         zDepth={immersive ? 0 : appBarZDepth}
       />
-      <div style={{ ...styles.container, ...containerStyle }}>
+      <div
+        className={containerClassName}
+        style={{ ...styles.container, ...containerStyle }}
+      >
         {children}
       </div>
     </FullscreenDialogFrame>
@@ -77,6 +83,10 @@ FullscreenDialog.propTypes = {
    * A `FlatButton` or `IconButton` that is used as affirmative action button.
    */
   actionButton: PropTypes.node,
+  /**
+   * Set the CSS classes of the app bar.
+   */
+  appBarClassName: PropTypes.string,
   /**
    * Overrides the inline-styles of the app bar.
    */
@@ -93,6 +103,10 @@ FullscreenDialog.propTypes = {
    * Icon element used for the dismissive action. This is hidden if `onRequestClose` is not set.
    */
   closeIcon: PropTypes.node,
+  /**
+   * Set the CSS classes of the dialog's children container.
+   */
+  containerClassName: PropTypes.string,
   /**
    * Overrides the inline-styles of the dialog's children container.
    */
