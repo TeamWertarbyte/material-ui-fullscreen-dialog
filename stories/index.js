@@ -27,9 +27,11 @@ storiesOf('FullscreenDialog', module)
       open
       title='Demo dialog'
       onRequestClose={action('onRequestClose')}
-      actionButton={<FlatButton
-        label='Done'
-      />}
+      actionButton={
+        <FlatButton
+          label='Done'
+        />
+      }
     >
       Hello world.
     </FullscreenDialog>
@@ -38,9 +40,11 @@ storiesOf('FullscreenDialog', module)
     <FullscreenDialog
       open
       title='No close button'
-      actionButton={<FlatButton
-        label='Done'
-      />}
+      actionButton={
+        <FlatButton
+          label='Done'
+        />
+      }
     >
       This popup's <code>onRequestClose</code> prop is not specified,
       so no close/back icon is displayed.

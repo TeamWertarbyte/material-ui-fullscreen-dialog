@@ -36,10 +36,11 @@
     "@material-ui/core": "^4.11.0",
     "@storybook/addon-actions": "^3.2.17",
     "@storybook/react": "^3.4.2",
+    "babel-eslint": "^10.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-transition-group": "^2.3.1",
-    "standard": "^10.0.2"
+    "standard": "^14.3.4"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.0.0",
@@ -49,5 +50,8 @@
   },
   "dependencies": {
     "prop-types": "^15.5.8"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }

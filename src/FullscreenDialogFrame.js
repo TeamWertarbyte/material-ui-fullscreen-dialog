@@ -1,65 +1,65 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Dialog from "@material-ui/core/Dialog";
-import Transition from "react-transition-group/Transition";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Dialog from '@material-ui/core/Dialog'
+import Transition from 'react-transition-group/Transition'
 
 // disable the animation when using Safari's swipe-back gesture
 // TODO make this configurable with a prop
-const disableAnimationIfSwiping = true || !!process.env.IOS;
-let disableNextAnimation = true;
-document.addEventListener("click", () => {
-  disableNextAnimation = false;
+const disableAnimationIfSwiping = true || !!process.env.IOS
+let disableNextAnimation = true
+document.addEventListener('click', () => {
+  disableNextAnimation = false
   setTimeout(() => {
-    disableNextAnimation = true;
-  }, 500);
-});
+    disableNextAnimation = true
+  }, 500)
+})
 
 const styles = {
   entering: {
-    opacity: 1,
+    opacity: 1
   },
   entered: {
-    opacity: 1,
-  },
-};
+    opacity: 1
+  }
+}
 
 const transitionStyles = {
   initial: {
-    transition: "all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)",
-    transform: "translate(0, 56px)",
+    transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
+    transform: 'translate(0, 56px)'
   },
   entering: {
-    transform: "translate(0, 0px)",
-    transition: "all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)",
+    transform: 'translate(0, 0px)',
+    transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)'
   },
   enteringFast: {
-    transform: "translate(0, 0px)",
-    transition: "none",
+    transform: 'translate(0, 0px)',
+    transition: 'none'
   },
   exiting: {
-    transition: "all 195ms cubic-bezier(0.4, 0.0, 1, 1)",
-    transform: "translate(0, 56px)",
+    transition: 'all 195ms cubic-bezier(0.4, 0.0, 1, 1)',
+    transform: 'translate(0, 56px)'
   },
   exitingFast: {
-    transition: "none",
+    transition: 'none'
   },
   exited: {
-    transition: "all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)",
-    transform: "translate(0, 56px)",
-  },
-};
+    transition: 'all 225ms cubic-bezier(0.0, 0.0, 0.2, 1)',
+    transform: 'translate(0, 56px)'
+  }
+}
 
-function setStyles(newStyles, node) {
+function setStyles (newStyles, node) {
   for (const style of Object.keys(newStyles)) {
     // eslint-disable-next-line no-param-reassign
-    node.style[style] = newStyles[style];
+    node.style[style] = newStyles[style]
   }
 }
 
 class Slide extends React.Component {
   handleEnter = (node) => {
     if (this.props.onEnter) {
-      this.props.onEnter(node);
+      this.props.onEnter(node)
     }
   };
 
@@ -69,10 +69,10 @@ class Slide extends React.Component {
         ? transitionStyles.enteringFast
         : transitionStyles.entering,
       node
-    );
-    disableNextAnimation = true;
+    )
+    disableNextAnimation = true
     if (this.props.onEntering) {
-      this.props.onEntering(node);
+      this.props.onEntering(node)
     }
   };
 
@@ -82,21 +82,21 @@ class Slide extends React.Component {
         ? transitionStyles.exitingFast
         : transitionStyles.exiting,
       node
-    );
-    disableNextAnimation = true;
+    )
+    disableNextAnimation = true
     if (this.props.onExit) {
-      this.props.onExit(node);
+      this.props.onExit(node)
     }
   };
 
   handleExited = (node) => {
-    setStyles(transitionStyles.exited, node);
+    setStyles(transitionStyles.exited, node)
     if (this.props.onExited) {
-      this.props.onExited(node);
+      this.props.onExited(node)
     }
   };
 
-  render() {
+  render () {
     const {
       children,
       in: inProp,
@@ -107,17 +107,17 @@ class Slide extends React.Component {
       style: styleProp,
       onClose,
       ...other
-    } = this.props;
+    } = this.props
 
     const style = {
       ...styleProp,
-      ...(React.isValidElement(children) ? children.props.style : {}),
-    };
+      ...(React.isValidElement(children) ? children.props.style : {})
+    }
 
     const handleClose = () => {
-      disableNextAnimation = false;
-      onClose();
-    };
+      disableNextAnimation = false
+      onClose()
+    }
 
     return (
       <Transition
@@ -135,17 +135,17 @@ class Slide extends React.Component {
           return React.cloneElement(children, {
             style: {
               opacity: 0,
-              willChange: "opacity",
+              willChange: 'opacity',
               ...transitionStyles.initial,
               ...styles[state],
               ...style,
-              ...children.props.style,
+              ...children.props.style
             },
-            ...childProps,
-          });
+            ...childProps
+          })
         }}
       </Transition>
-    );
+    )
   }
 }
 
@@ -157,17 +157,17 @@ Slide.propTypes = {
   onExit: PropTypes.func,
   onExited: PropTypes.func,
   style: PropTypes.object,
-  onClose: PropTypes.func.isRequired,
-};
+  onClose: PropTypes.func.isRequired
+}
 
-export default function FullscreenDialog({ children, ...other }) {
+export default function FullscreenDialog ({ children, ...other }) {
   return (
     <Dialog {...other} fullScreen TransitionComponent={Slide} hideBackdrop>
       {children}
     </Dialog>
-  );
+  )
 }
 
 FullscreenDialog.propTypes = {
-  children: PropTypes.node,
-};
+  children: PropTypes.node
+}

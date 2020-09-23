@@ -24,10 +24,12 @@ export default class extends React.Component {
             this.setState({ open: false })
           }}
           title='Some demo dialog'
-          actionButton={<FlatButton
-            label='Done'
-            onClick={() => this.setState({ open: false })}
-          />}
+          actionButton={
+            <FlatButton
+              label='Done'
+              onClick={() => this.setState({ open: false })}
+            />
+          }
         >
           <TextField
             floatingLabelText='Very important field'
