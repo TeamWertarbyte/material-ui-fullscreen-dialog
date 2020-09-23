@@ -5,7 +5,7 @@
   "main": "lib/FullscreenDialog.js",
   "scripts": {
     "prebuild": "rm -rf lib",
-    "build": "babel src -d lib",
+    "build": "babel src -d lib --copy-files",
     "test": "standard",
     "lint": "standard",
     "prepublish": "babel src -d lib",
