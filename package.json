@@ -35,7 +35,7 @@
     "@babel/preset-react": "^7.10.4",
     "@material-ui/core": "^4.11.0",
     "@storybook/addon-actions": "^3.2.17",
-    "@storybook/react": "^3.4.2",
+    "@storybook/react": "^6.5.15",
     "babel-eslint": "^10.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
